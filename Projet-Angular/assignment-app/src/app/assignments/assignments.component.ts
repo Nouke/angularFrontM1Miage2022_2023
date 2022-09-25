@@ -20,14 +20,14 @@ export class AssignmentsComponent implements OnInit {
     {
       nom: "TP2 Angular à rendre",
       dateDeRendu: '2022-10-15',
-      rendu: true
+      rendu: false
 
     },
 
     {
       nom: "TP3 Mini Projet Angular à rendre",
       dateDeRendu: '2022-10-18',
-      rendu: true
+      rendu: false
 
     }
   ]

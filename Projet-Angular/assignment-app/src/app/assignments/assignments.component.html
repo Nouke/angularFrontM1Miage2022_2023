@@ -1,6 +1,14 @@
 
-<p *ngFor=" let assignment of assignments">
-    Devoir intitulé: {{assignment.nom}}, à rendre le: {{assignment.dateDeRendu}}, rendu par l'élève: {{assignment.rendu}}
+<div *ngFor=" let assignment of assignments">
+    
+    <p style="color: green;" *ngIf="assignment.rendu ; else nonSoumis">
+      Devoir intitulé: {{assignment.nom}}, à rendre le: {{assignment.dateDeRendu}}, rendu par l'élève: {{assignment.rendu}}
+    </p> 
+
+    <ng-template #nonSoumis>
+        <p style="color: red;"> Le devoir {{assignment.nom}} n'a pas été rendu</p>
+
+    </ng-template>
 
 
-</p>
+</div>
