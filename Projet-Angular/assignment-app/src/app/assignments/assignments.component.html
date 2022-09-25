@@ -1,1 +1,6 @@
-<p>assignments works!</p>
+
+<p *ngFor=" let assignment of assignments">
+    Devoir intitulé: {{assignment.nom}}, à rendre le: {{assignment.dateDeRendu}}, rendu par l'élève: {{assignment.rendu}}
+
+
+</p>
