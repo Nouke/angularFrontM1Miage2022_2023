@@ -8,10 +8,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { AssignmentsComponent } from './assignments/assignments.component';
+import { RenduDirective } from './shared/rendu.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    AssignmentsComponent
+    AssignmentsComponent,
+    RenduDirective
   ],
   imports: [
     BrowserModule,
