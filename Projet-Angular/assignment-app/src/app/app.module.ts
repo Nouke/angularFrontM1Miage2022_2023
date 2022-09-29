@@ -9,17 +9,25 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
+import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule  } from "@angular/material/core";
 @NgModule({
   declarations: [
     AppComponent,
     AssignmentsComponent,
-    RenduDirective
+    RenduDirective, 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,MatIconModule, MatDividerModule,
+    MatButtonModule,MatIconModule, MatDividerModule, 
+    FormsModule, 
+    MatInputModule, MatFormFieldModule,MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

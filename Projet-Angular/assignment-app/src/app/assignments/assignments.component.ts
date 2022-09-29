@@ -1,13 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { every } from 'rxjs';
+import {Assignment  } from './assignment.model';
 
 @Component({
   //selector: 'app-<assignments>',
   selector: 'app-assignments>',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css']
-})
+})      
 export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les Assignments !"
+
+  ajoutActive = false;
+  nomDevoir:string="";
+  dateRendu!: Date;
+
+  ngOnInit():void {
+    setTimeout(() => {
+      this.ajoutActive = true;
+    },2000);
+  }
+   onSubmit(){
+   // console.log(this.nomDevoir + "Date de rendu =");
+    const newAssignment = new Assignment();
+    newAssignment.nom = this.nomDevoir;
+    newAssignment.dateDeRendu = this.dateRendu;
+    newAssignment.rendu= false;
+    console.log(newAssignment);
+   }
 
   assignments = [
     {
@@ -34,7 +54,7 @@ export class AssignmentsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+ /* ngOnInit(): void {
+  }*/
 
 }

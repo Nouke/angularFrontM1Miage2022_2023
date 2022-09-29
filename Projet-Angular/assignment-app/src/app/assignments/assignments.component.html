@@ -1,6 +1,37 @@
 
-<div *ngFor=" let assignment of assignments"
->
+<!--<form ngForm (submit)="onSubmit($event)">
+  <button mat-stroked-button color="primary" 
+  [disabled]="!ajoutActive">
+    Ajouter un devoir
+  </button>
+
+</form>-->
+
+<form ngForm (submit)="onSubmit()" #assignmentForm>
+    <mat-form-field>
+      <input matInput [(ngModel)]="nomDevoir" name="nom" placeholder=" nom du devoir">
+    </mat-form-field>
+    <p>{{nomDevoir}}</p>
+ 
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker"  placeholder=" Date de rendu" [(ngModel)]="dateRendu" name="date">
+  </mat-form-field>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+
+<br>
+   <!-- <button mat-stroked-button color="primary" [disabled]="!ajoutActive"
+      (Click)="onSubmit(); assignmentForm.reset()" #assignmentForm> Ajouter un devoir
+    </button>-->
+
+    <button mat-stroked-button color="primary" [disabled]="!ajoutActive" (Click)="onSubmit();"
+      #assignmentForm> Ajouter un devoir
+    </button>
+
+
+</form>
+
+<div *ngFor=" let assignment of assignments">
     
     
     
