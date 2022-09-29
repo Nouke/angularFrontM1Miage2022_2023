@@ -1,0 +1,13 @@
+<p *ngIf="assignmentTransmis"> Nom= {{assignmentTransmis.nom}}</p>
+
+<div class = "container">
+    <mat-card *ngIf="assignmentTransmis">
+        <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+            <mat-card-subtitle> {{assignmentTransmis.dateDeRendu | date}} </mat-card-subtitle>
+        
+
+
+    </mat-card>
+
+
+</div>

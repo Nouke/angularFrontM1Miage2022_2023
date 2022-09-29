@@ -14,6 +14,7 @@ export class AssignmentsComponent implements OnInit {
   ajoutActive = false;
   nomDevoir:string="";
   dateRendu!: Date;
+  assignmentSelectionne!: Assignment;
 
   ngOnInit():void {
     setTimeout(() => {
@@ -28,25 +29,28 @@ export class AssignmentsComponent implements OnInit {
     newAssignment.rendu= false;
     console.log(newAssignment);
    }
+      assignmentClique(assignment: Assignment){
+          this.assignmentSelectionne = assignment;
+      }
 
   assignments = [
     {
       nom: " TP1 Analyse de données à rendre",
-      dateDeRendu: '2022-10-10',
+      dateDeRendu: new Date('2022-10-10'),
       rendu: true
 
     },
 
     {
       nom: "TP2 Angular à rendre",
-      dateDeRendu: '2022-10-15',
+      dateDeRendu: new Date('2022-10-15'),
       rendu: false
 
     },
 
     {
       nom: "TP3 Mini Projet Angular à rendre",
-      dateDeRendu: '2022-10-18',
+      dateDeRendu: new Date ('2022-10-18'),
       rendu: false
 
     }

@@ -31,18 +31,21 @@
 
 </form>
 
-<div *ngFor=" let assignment of assignments">
-    
-    
-    
-    <p appRendu *ngIf="assignment.rendu ; else nonSoumis">
-      Devoir intitulé: {{assignment.nom}}, à rendre le: {{assignment.dateDeRendu}}, rendu par l'élève: {{assignment.rendu}}
-    </p> 
-
-    <ng-template #nonSoumis>
+<mat-list *ngFor=" let assignment of assignments">
+  <h3 mat-subheader> {{assignment.dateDeRendu | date:'short' }}</h3>  
+  <mat-list-item (click)="assignmentClique(assignment)">
+      <p appRendu *ngIf="assignment.rendu ; else nonSoumis">
+        Devoir intitulé: {{assignment.nom}}, a été rendu. <!--le: {{assignment.dateDeRendu}}, rendu par l'élève: {{assignment.rendu}}-->
+      </p>
+      
+      <ng-template #nonSoumis>
         <p> Le devoir {{assignment.nom}} n'a pas été rendu</p>
+      
+      </ng-template>
 
-    </ng-template>
+      <mat-divider> </mat-divider>
+    </mat-list-item>
+    
+</mat-list>
 
-
-</div>
+<app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
