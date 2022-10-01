@@ -12,27 +12,23 @@ export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les Assignments !"
 
   ajoutActive = false;
-  nomDevoir:string="";
-  dateRendu!: Date;
-  assignmentSelectionne!: Assignment;
+  formVisible = false;
+  assignmentSelectionne: Assignment = new Assignment;
 
   ngOnInit():void {
-    setTimeout(() => {
+  /*  setTimeout(() => {
       this.ajoutActive = true;
-    },2000);
+    },2000);*/
   }
-   onSubmit(){
+  /* onSubmit(){
    // console.log(this.nomDevoir + "Date de rendu =");
     const newAssignment = new Assignment();
     newAssignment.nom = this.nomDevoir;
     newAssignment.dateDeRendu = this.dateRendu;
     newAssignment.rendu= false;
     console.log(newAssignment);
-   }
-      assignmentClique(assignment: Assignment){
-          this.assignmentSelectionne = assignment;
-      }
-
+   }*/
+    
   assignments = [
     {
       nom: " TP1 Analyse de données à rendre",
@@ -60,5 +56,16 @@ export class AssignmentsComponent implements OnInit {
 
  /* ngOnInit(): void {
   }*/
+  assignmentClique(assignment: Assignment) {
+    this.assignmentSelectionne = assignment;
+  }
 
+  onAddAssignmentBtnClick() {
+    this.formVisible = true;
+  }
+
+  onNouvelAssignment(event:Assignment){
+    this.assignments.push(event);
+    this.formVisible = false;
+  }
 }

@@ -19,13 +19,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+//import { ComponentDetailComponent } from './component-detail/component-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     AssignmentsComponent,
     RenduDirective,
     AssignmentDetailComponent,
-    AddAssignmentComponent, 
+    AddAssignmentComponent,
+    //ComponentDetailComponent, 
   ],
   imports: [
     BrowserModule,

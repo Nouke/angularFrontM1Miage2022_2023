@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Assignment } from '../assignment.model';
 
 @Component({
   selector: 'app-add-assignment',
@@ -6,16 +7,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-assignment.component.css']
 })
 export class AddAssignmentComponent implements OnInit {
-nomDevoir: any;
-dateRendu: any;
+  @Output() nouvelAssignment = new EventEmitter<Assignment>();
+  nomDevoir!: string;
+  dateRendu!: Date;
 ajoutActive: any;
-onSubmit() {
+
+  //nomDevoir: string = "";
+ // dateRendu!: Date;
+
+/*onSubmit() {
 throw new Error('Method not implemented.');
-}
+}*/
 
   constructor() { }
 
   ngOnInit(): void {
   }
+  onSubmit() {
+    // console.log(this.nomDevoir + "Date de rendu =");
+    const newAssignment = new Assignment();
+    newAssignment.nom = this.nomDevoir;
+    newAssignment.dateDeRendu = this.dateRendu;
+    newAssignment.rendu = false;
+    //console.log(newAssignment);
+    this.nouvelAssignment.emit(newAssignment);
+  } 
 
 }
