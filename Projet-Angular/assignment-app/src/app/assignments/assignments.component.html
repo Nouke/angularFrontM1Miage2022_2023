@@ -7,7 +7,7 @@
 
 </form>-->
 
-<form ngForm (submit)="onSubmit()" #assignmentForm>
+<!--<form ngForm (submit)="onSubmit()" #assignmentForm>
     <mat-form-field>
       <input matInput [(ngModel)]="nomDevoir" name="nom" placeholder=" nom du devoir">
     </mat-form-field>
@@ -20,9 +20,6 @@
   <mat-datepicker #picker></mat-datepicker>
 
 <br>
-   <!-- <button mat-stroked-button color="primary" [disabled]="!ajoutActive"
-      (Click)="onSubmit(); assignmentForm.reset()" #assignmentForm> Ajouter un devoir
-    </button>-->
 
     <button mat-stroked-button color="primary" [disabled]="!ajoutActive" (Click)="onSubmit();"
       #assignmentForm> Ajouter un devoir
@@ -30,6 +27,7 @@
 
 
 </form>
+-->
 
 <mat-list *ngFor=" let assignment of assignments">
   <h3 mat-subheader> {{assignment.dateDeRendu | date:'short' }}</h3>  

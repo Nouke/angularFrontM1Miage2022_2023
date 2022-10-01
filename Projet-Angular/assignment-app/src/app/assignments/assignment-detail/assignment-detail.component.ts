@@ -8,10 +8,15 @@ import { Assignment } from '../assignment.model';
 })
 export class AssignmentDetailComponent implements OnInit {
 
-  @Input() assignmentTransmis:Assignment | undefined;
+  @Input()
+  assignmentTransmis: Assignment = new Assignment;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onAssignmentRendu(){
+    this.assignmentTransmis.rendu=true;
   }
 
 }
