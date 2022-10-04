@@ -8,7 +8,7 @@ import { Assignment } from '../assignment.model';
 })
 export class AssignmentDetailComponent implements OnInit {
 
-  @Input() assignmentTransmis?: Assignment;
+  @Input() assignmentTransmis: Assignment = new Assignment;
   //assignmentTransmis: Assignment = new Assignment;
 
   @Output() deleteAssignment = new EventEmitter<Assignment>();
@@ -19,12 +19,12 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onAssignmentRendu(){
-    //this.assignmentTransmis.rendu=true;
+    this.assignmentTransmis.rendu=true;
   }
 
   onDelete(){
     this.deleteAssignment.emit(this.assignmentTransmis);
-    this.assignmentTransmis = undefined;
+    this.assignmentTransmis = new Assignment;
   }
 
 }

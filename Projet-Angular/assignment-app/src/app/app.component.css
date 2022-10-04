@@ -35,3 +35,24 @@ section {
     justify-content: center;
     width: 120px;
 }
+.home{
+    color: beige;
+}
+.login{
+    margin-left: 1200px;
+    color: beige;
+    
+}
+mat-sidenav-container{
+    height: calc(205vh - 115vh);
+}
+ mat-sidenav{
+    width: 200px;
+    background-color:#00b4d5;
+}
+.bt{
+    display: table;
+}
+.menu{
+    color:beige;
+}

@@ -19,7 +19,30 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-//import { ComponentDetailComponent } from './component-detail/component-detail.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+//import { Router, RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule  } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path:"",
+    component:AssignmentsComponent
+  },
+  {
+    path:"home",
+    component:AssignmentsComponent
+  },
+
+  {
+    path:"add",
+    component:AddAssignmentComponent
+  },
+  {
+    path:"list",
+    component:AssignmentsComponent
+  }
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +60,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FormsModule, 
     MatInputModule, MatFormFieldModule,MatNativeDateModule,
     MatDatepickerModule,MatListModule,MatCheckboxModule,
-    MatCardModule
+    MatCardModule, MatToolbarModule, MatSidenavModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

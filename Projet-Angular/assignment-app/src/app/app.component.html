@@ -1,4 +1,10 @@
-<h1>Application de gestion des assignments</h1>
+
+<h1>
+    <nav>
+        <a routerLink="/home">Application de gestion des assignments</a>
+    </nav>
+
+</h1>
 
 <!-- 
 <section>
@@ -129,6 +135,39 @@
 </section>
 
 -->
+<mat-toolbar style="background-color: #00b4d5;">
+    
+        <mat-toolbar-row>
+        
+            <button mat-button (click)="opened=!opened" class="menu"><mat-icon>menu</mat-icon></button>   
+            <button mat-button class="home"> <mat-icon> home </mat-icon>Home</button>
+            <button mat-button class="login"> <mat-icon> login </mat-icon>Connexion </button>
+          
+        </mat-toolbar-row>
 
+</mat-toolbar> 
 
-<app-assignments> </app-assignments>
+<mat-sidenav-container>
+
+    <mat-sidenav [(opened)]="opened" mode="side">
+
+        <mat-list>
+            <mat-list-item><a routerLink="/home">Home </a></mat-list-item>
+            <mat-list-item><a routerLink="/list">Liste des devoirs </a></mat-list-item>
+            <mat-list-item><a routerLink="/add">Ajout d'un devoir </a></mat-list-item>
+            <mat-list-item><a routerLink="/assignments ">Modification d'un devoir </a></mat-list-item>
+            <mat-list-item><a routerLink="/assignments ">Suppression d'un devoir</a></mat-list-item>
+            <mat-list-item><a routerLink="/assignments ">Génération de données de test</a></mat-list-item>
+        </mat-list>
+      
+       
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+       <!-- Permet d'afficher le composant qui correspond à l'URL en fonction des routes-->
+        <router-outlet></router-outlet>
+     
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!--<app-assignments> </app-assignments>-->
