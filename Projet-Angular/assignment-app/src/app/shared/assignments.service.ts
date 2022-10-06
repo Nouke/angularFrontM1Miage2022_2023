@@ -1,9 +1,38 @@
 import { Injectable } from '@angular/core';
+import { Assignment } from '../assignments/assignment.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssignmentsService {
 
-  constructor() { }
+  assignments = [
+    {
+      nom: " TP1 Analyse de données à rendre",
+      dateDeRendu: new Date('2022-10-10'),
+      rendu: true
+
+    },
+
+    {
+      nom: "TP2 Angular à rendre",
+      dateDeRendu: new Date('2022-10-15'),
+      rendu: false
+
+    },
+
+    {
+      nom: "TP3 Mini Projet Angular à rendre",
+      dateDeRendu: new Date('2022-10-18'),
+      rendu: false
+
+    }
+  ]
+
+  constructor() {}
+    getAssignments():Assignment[]{
+      return this.assignments;
+    }
+    
+   
 }

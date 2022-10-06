@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { every } from 'rxjs';
+import { AssignmentsService } from '../shared/assignments.service';
 import {Assignment  } from './assignment.model';
 
 @Component({
@@ -15,11 +16,11 @@ export class AssignmentsComponent implements OnInit {
   formVisible = false;
   assignmentSelectionne: Assignment = new Assignment;
 
-  ngOnInit():void {
-  /*  setTimeout(() => {
+  /*ngOnInit():void {
+    setTimeout(() => {
       this.ajoutActive = true;
-    },2000);*/
-  }
+    },2000);
+  }*/
   /* onSubmit(){
    // console.log(this.nomDevoir + "Date de rendu =");
     const newAssignment = new Assignment();
@@ -28,7 +29,7 @@ export class AssignmentsComponent implements OnInit {
     newAssignment.rendu= false;
     console.log(newAssignment);
    }*/
-    
+    /*
   assignments = [
     {
       nom: " TP1 Analyse de données à rendre",
@@ -51,11 +52,13 @@ export class AssignmentsComponent implements OnInit {
 
     }
   ]
+*/
+  assignments:Assignment[]= []; 
+  constructor(private assignmentsService:AssignmentsService) { }
 
-  constructor() { }
-
- /* ngOnInit(): void {
-  }*/
+  ngOnInit(): void {
+    this.assignments=this.assignmentsService.getAssignments();
+  }
   assignmentClique(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
   }
