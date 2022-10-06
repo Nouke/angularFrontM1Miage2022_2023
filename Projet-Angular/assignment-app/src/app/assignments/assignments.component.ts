@@ -54,10 +54,16 @@ export class AssignmentsComponent implements OnInit {
   ]
 */
   assignments:Assignment[]= []; 
-  constructor(private assignmentsService:AssignmentsService) { }
+  constructor(private assignmentService:AssignmentsService) { }
 
   ngOnInit(): void {
-    this.assignments=this.assignmentsService.getAssignments();
+   // this.assignments=this.assignmentsService.getAssignments();
+    this.getAssignments();
+  }
+
+  getAssignments(){
+    this.assignmentService.getAssignments()
+    .subscribe(assignments => this.assignments = assignments);
   }
   assignmentClique(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
