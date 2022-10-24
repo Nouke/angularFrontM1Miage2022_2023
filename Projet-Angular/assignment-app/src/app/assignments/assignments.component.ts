@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { every } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AssignmentsService } from '../shared/assignments.service';
 import {Assignment  } from './assignment.model';
 
@@ -13,8 +13,9 @@ export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les Assignments !"
 
   ajoutActive = false;
-  formVisible = false;
-  assignmentSelectionne: Assignment = new Assignment;
+  formVisible = false; //Pour afficher ou non le formulaire
+
+  assignmentSelectionne?: Assignment; // Pour envoie au composant de detail
 
   /*ngOnInit():void {
     setTimeout(() => {
@@ -54,8 +55,10 @@ export class AssignmentsComponent implements OnInit {
   ]
 */
   assignments:Assignment[]= []; 
+  assignmentsService: any;
   constructor(private assignmentService:AssignmentsService) { }
 
+  // Appeler pour l'affichage
   ngOnInit(): void {
    // this.assignments=this.assignmentsService.getAssignments();
     this.getAssignments();
@@ -65,23 +68,50 @@ export class AssignmentsComponent implements OnInit {
     this.assignmentService.getAssignments()
     .subscribe(assignments => this.assignments = assignments);
   }
+
+  addAssignment(assignment: Assignment): Observable<string>{
+    this.assignments.push(assignment);
+    return of('Assignment ajouté');
+  }
+
   assignmentClique(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
   }
 
   onAddAssignmentBtnClick() {
     this.formVisible = true;
+    //Pour cacher la vue des détails
+    this.assignmentSelectionne = undefined;
   }
 
-  onNouvelAssignment(event:Assignment){
-    this.assignments.push(event);
-    this.formVisible = false;
+  onDeleteAssignment(assignment:Assignment){
+    this.assignmentService.deleteAssignment(assignment)
+    .subscribe(message => {
+      console.log(message);
+      //Pour cacher la vue des détails
+      this.assignmentSelectionne = undefined;
+    }
+      )
+      
   }
 
-  onDeleteAssignment(event:Assignment){
-    const pos = this.assignments.indexOf(event);
+  onNouvelAssignment(assignment: Assignment) {
+    //this.assignments.push(event);
+    this.assignmentsService.addAssignment(assignment)
+      .subscribe((message: any) => {
+        console.log(message);
+        //On ne cache le formulaire et on ne reafficcche la liste que quand
+        //les données sont réellement ajoutées. Si passe par une requete Ajax dans le cloud et une vraie BD, alors le seul endroit 
+        //qui permet sûr que les données ont été réellemnt , c'est ici dans le 
+        //subscribe
+        this.formVisible = false;
+      })
+  }
 
-     //position et nbre d'objets à supprimer dans le tableau
-    this.assignments.splice(pos,1);
+  updateAssignment(assignment:Assignment):Observable<string>{
+    //Pour le moment, on a rien à faire ... ça marche tel quel
+    //PLus tard envoyer la requete http PUT sur web service pour update d'une base de données
+
+    return of("Assignment service: assignment modifié");
   }
 }
