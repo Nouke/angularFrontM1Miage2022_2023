@@ -3,6 +3,7 @@
     <nav>
         <a routerLink="/home">Application de gestion des assignments</a>
     </nav>
+    <mat-slide-toggle color="primary" (click)="login()">Slide me!</mat-slide-toggle>
 
 </h1>
 
@@ -141,7 +142,9 @@
         
             <button mat-button (click)="opened=!opened" class="menu"><mat-icon>menu</mat-icon></button>   
             <button mat-button class="home"> <mat-icon> home </mat-icon>Home</button>
-            <button mat-button class="login"> <mat-icon> login </mat-icon>Connexion </button>
+            
+           
+
           
         </mat-toolbar-row>
 
