@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 
@@ -12,11 +13,22 @@ export class AssignmentDetailComponent implements OnInit {
   @Input() assignmentTransmis?: Assignment = new Assignment;
   //assignmentTransmis: Assignment = new Assignment;
 
-  @Output() deleteAssignment = new EventEmitter<Assignment>();
+  //@Output() deleteAssignment = new EventEmitter<Assignment>();
 
-  constructor( private assignmentsService: AssignmentsService) { }
+  constructor( private assignmentsService: AssignmentsService, 
+    private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    // le + force la conversion
+    const id:number = +this.route.snapshot.params['id'];
+    console.log("Composant detail, id = " +id);
+
+    // A partir de l'id on demande au service, l'assignment qui correspond
+    
+    this.assignmentsService.getAssignment(id)
+    .subscribe(assignment => {
+      this.assignmentTransmis = assignment;
+    })
   }
 
   onAssignmentRendu(){
@@ -26,14 +38,22 @@ export class AssignmentDetailComponent implements OnInit {
       this.assignmentsService.updateAssignment(this.assignmentTransmis)
       .subscribe(message => {
         console.log(message);
+        this.assignmentTransmis = undefined;
       })
     }
     
   }
 
- onDelete(){
-    this.deleteAssignment.emit(this.assignmentTransmis);
-    this.assignmentTransmis = new Assignment;
+ onDeleteAssignment(){
+   // this.deleteAssignment.emit(this.assignmentTransmis);
+    //this.assignmentTransmis = new Assignment;
+    if(this.assignmentTransmis)
+   this.assignmentsService.deleteAssignment(this.assignmentTransmis)
+     .subscribe(message => {
+       console.log(message);
+
+       this.assignmentTransmis = undefined;
+     });
     
   }
 

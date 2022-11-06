@@ -12,10 +12,10 @@ import {Assignment  } from './assignment.model';
 export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les Assignments !"
 
-  ajoutActive = false;
-  formVisible = false; //Pour afficher ou non le formulaire
+  //ajoutActive = false;
+  //formVisible = false; //Pour afficher ou non le formulaire
 
-  assignmentSelectionne?: Assignment; // Pour envoie au composant de detail
+  //assignmentSelectionne?: Assignment; // Pour envoie au composant de detail
 
   /*ngOnInit():void {
     setTimeout(() => {
@@ -54,7 +54,7 @@ export class AssignmentsComponent implements OnInit {
     }
   ]
 */
-  assignments:Assignment[]= []; 
+  assignments:Assignment[] = []; 
   assignmentsService: any;
   constructor(private assignmentService:AssignmentsService) { }
 
@@ -74,28 +74,27 @@ export class AssignmentsComponent implements OnInit {
     return of('Assignment ajouté');
   }
 
-  assignmentClique(assignment: Assignment) {
+ /* assignmentClique(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
-  }
+  }*/
 
-  onAddAssignmentBtnClick() {
+  /*onAddAssignmentBtnClick() {
     this.formVisible = true;
     //Pour cacher la vue des détails
     this.assignmentSelectionne = undefined;
-  }
+  }*/
+  
 
-  onDeleteAssignment(assignment:Assignment){
+ /* onDeleteAssignment(assignment:Assignment){
     this.assignmentService.deleteAssignment(assignment)
     .subscribe(message => {
       console.log(message);
       //Pour cacher la vue des détails
-      this.assignmentSelectionne = undefined;
-    }
-      )
-      
-  }
+    //  this.assignmentSelectionne = undefined;
+    })  
+  }*/
 
-  onNouvelAssignment(assignment: Assignment) {
+/*  onNouvelAssignment(assignment: Assignment) {
     //this.assignments.push(event);
     this.assignmentsService.addAssignment(assignment)
       .subscribe((message: any) => {
@@ -104,9 +103,9 @@ export class AssignmentsComponent implements OnInit {
         //les données sont réellement ajoutées. Si passe par une requete Ajax dans le cloud et une vraie BD, alors le seul endroit 
         //qui permet sûr que les données ont été réellemnt , c'est ici dans le 
         //subscribe
-        this.formVisible = false;
+       // this.formVisible = false;
       })
-  }
+  }*/
 
   updateAssignment(assignment:Assignment):Observable<string>{
     //Pour le moment, on a rien à faire ... ça marche tel quel
