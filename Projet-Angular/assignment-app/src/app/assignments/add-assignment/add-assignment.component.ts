@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 
@@ -20,7 +21,8 @@ ajoutActive: any;
 throw new Error('Method not implemented.');
 }*/
 
-  constructor(private assignmentsService:AssignmentsService) { }
+  constructor(private assignmentsService:AssignmentsService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -38,6 +40,9 @@ throw new Error('Method not implemented.');
       console.log(message);
       //on doit naviguer vers l'url qui affiche la liste ("" ou "/home")
       //on doit naviguer par programme
+      // on retourne à la page d'accueil
+      // on retourne à la page d'accueil
+      this.router.navigate(["/home"]);
     })
   } 
 

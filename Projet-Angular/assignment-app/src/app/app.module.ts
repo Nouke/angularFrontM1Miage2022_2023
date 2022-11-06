@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 //import { Router, RouterModule, Routes } from '@angular/router';
 import { Routes, RouterModule  } from '@angular/router';
+import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,11 @@ const routes: Routes = [
   {
     path: "assignment/:id",
     component: AssignmentDetailComponent
+  },
+
+  {
+    path: "assignment/:id/edit",
+    component: EditAssignmentComponent
   }
 ]
 @NgModule({
@@ -54,6 +60,7 @@ const routes: Routes = [
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
+    EditAssignmentComponent,
     //ComponentDetailComponent, 
   ],
   imports: [
