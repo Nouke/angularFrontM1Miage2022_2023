@@ -2,6 +2,7 @@ import { query } from '@angular/animations';
 import { Component, Input, OnInit, } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { AuthService } from 'src/app/shared/auth.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -18,7 +19,8 @@ export class AssignmentDetailComponent implements OnInit {
 
   constructor(private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private authService:AuthService) { }
 
   ngOnInit(): void {
     // le + force la conversion
@@ -83,5 +85,9 @@ export class AssignmentDetailComponent implements OnInit {
     }
     );
   }
+  isAdmin(): boolean {
+   return this.authService.loggedIn;
+  }
+
 
 }
