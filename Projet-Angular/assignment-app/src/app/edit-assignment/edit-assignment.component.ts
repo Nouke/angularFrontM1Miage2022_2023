@@ -42,7 +42,7 @@ export class EditAssignmentComponent implements OnInit {
       });
   }
   onSaveAssignment() {
-    if (!this.assignment) return;
+   // if (!this.assignment) return;
 
     // on récupère les valeurs dans le formulaire
     if (!this.assignment) return;
@@ -58,14 +58,13 @@ export class EditAssignmentComponent implements OnInit {
     //  this.assignment.dateDeRendu = this.dateDeRendu;
 
 
-    this.assignmentsService
-      .updateAssignment(this.assignment)
-      .subscribe(message => {
-        console.log(message);
+    this.assignmentsService.updateAssignment({ assignment: this.assignment })
+      .subscribe(reponse => {
+        console.log("Reponse du serveur : " + reponse.message);
 
         // navigation vers la home page
         this.router.navigate(['/home']);
-      });
+      })
   }
 
 }

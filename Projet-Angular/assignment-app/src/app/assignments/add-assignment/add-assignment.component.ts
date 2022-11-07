@@ -36,8 +36,8 @@ throw new Error('Method not implemented.');
     //console.log(newAssignment);
  //   this.nouvelAssignment.emit(newAssignment);
     this.assignmentsService.addAssignment(newAssignment)
-    .subscribe(message => {
-      console.log(message);
+    .subscribe(reponse => {
+      console.log(reponse.message);
       //on doit naviguer vers l'url qui affiche la liste ("" ou "/home")
       //on doit naviguer par programme
       // on retourne à la page d'accueil

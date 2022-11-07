@@ -20,7 +20,7 @@ export class AssignmentDetailComponent implements OnInit {
   constructor(private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService:AuthService) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     // le + force la conversion
@@ -39,14 +39,14 @@ export class AssignmentDetailComponent implements OnInit {
     if (this.assignmentTransmis) {
       this.assignmentTransmis.rendu = true;
 
-      this.assignmentsService.updateAssignment(this.assignmentTransmis)
-        .subscribe(message => {
-          console.log(message);
-          this.assignmentTransmis = undefined;
+      this.assignmentsService.updateAssignment({ assignment: this.assignmentTransmis })
+        .subscribe(reponse => {
+          console.log("Réponse du serveur" + reponse.message);
+        //  this.assignmentTransmis = undefined;
 
           // on retourne à la page d'accueil
           this.router.navigate(["/home"]);
-        })
+        });
     }
 
   }
@@ -56,8 +56,8 @@ export class AssignmentDetailComponent implements OnInit {
     //this.assignmentTransmis = new Assignment;
     if (this.assignmentTransmis)
       this.assignmentsService.deleteAssignment(this.assignmentTransmis)
-        .subscribe(message => {
-          console.log(message);
+        .subscribe(reponse => {
+          console.log("Reponse du serveur: " + reponse.message);
 
           this.assignmentTransmis = undefined;
           // on retourne à la page d'accueil
@@ -75,18 +75,18 @@ export class AssignmentDetailComponent implements OnInit {
    }*/
   onClickEdit() {
     this.router.navigate(['/assignment', this.assignmentTransmis?.id, 'edit'],
-    {
-      queryParams: {
-        nom:this.assignmentTransmis?.nom,
-        debug:true,
-        age:56
-      },
-      fragment:"edition"
-    }
+      {
+        queryParams: {
+          nom: this.assignmentTransmis?.nom,
+          debug: true,
+          age: 56
+        },
+        fragment: "edition"
+      }
     );
   }
   isAdmin(): boolean {
-   return this.authService.loggedIn;
+    return this.authService.loggedIn;
   }
 
 

@@ -60,8 +60,22 @@ export class AssignmentsComponent implements OnInit {
 
   // Appeler pour l'affichage
   ngOnInit(): void {
+
+    //Appeler avant l'affichage
+    console.log( "Avant AFFICHAGE");
+    //On va demander au service de nous envoyer les données (les assignments)
+    //typiquement: le service envoie une requete AJAX sur un web service du cloud
    // this.assignments=this.assignmentsService.getAssignments();
-    this.getAssignments();
+
+   //TODO
+   console.log("On demande les assignments au service")
+    this.assignmentService.getAssignments()
+    .subscribe(assignments => {
+      //quand on rentre ici on sait que les données sont pretes
+      console.log("Données reçues")
+     this.assignments=assignments;
+    });
+  //  this.getAssignments();
   }
 
   getAssignments(){
