@@ -39,7 +39,7 @@ export class AssignmentDetailComponent implements OnInit {
     if (this.assignmentTransmis) {
       this.assignmentTransmis.rendu = true;
 
-      this.assignmentsService.updateAssignment({ assignment: this.assignmentTransmis })
+      this.assignmentsService.updateAssignment(this.assignmentTransmis)
         .subscribe(reponse => {
           console.log("Réponse du serveur" + reponse.message);
         //  this.assignmentTransmis = undefined;

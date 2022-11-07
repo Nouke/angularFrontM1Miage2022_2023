@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
-import { Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -58,9 +58,30 @@ export class AssignmentsService {
     //on doit mettre | undefined si jamais l'élément n'existe pas
   /*  let a: Assignment | undefined = this.assignments.find(a => a.id === id);
     return of(a);*/
-    return this.http.get<Assignment>(`${this.url}/${id}`);
+    return this.http.get<Assignment>(`${this.url}/${id}`)
+    .pipe(
+      tap( a => {
+       // a.nom += "Modifié ds un pipe";
+       // return a;
+       console.log("tap : " + a.nom)
+      }),
+
+       catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id +" a échoué"))
+
+    );
 
   }
+
+  private handleError<T>(operation: any, result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error); // pour afficher dans la console
+      console.log(operation + ' a échoué ' + error.message);
+
+      return of(result as T);
+    }
+  };
+// Et la ligne catchError à ajouter dans le pipe(...)
+ 
 
   addAssignment(assignment: Assignment): Observable<any> {
  //   this.assignments.push(assignment);
@@ -71,7 +92,7 @@ export class AssignmentsService {
 
   }
 
-  updateAssignment({ assignment }: { assignment: Assignment; }): Observable<any> {
+  updateAssignment(assignment: Assignment): Observable<any> {
     //Pour le moment, on a rien à faire ... ça marche tel quel
     //PLus tard envoyer la requete http PUT sur web service pour update d'une base de données
     this.loggingService.log(assignment, "modifié");
