@@ -46,8 +46,8 @@ export class AssignmentsService {
     ) {
     this.loggingService.setLoggingLevel(1);
   }
-  //url = "http://localhost:8010/api/assignments";
-  url = "https://api-angular-backend-miage.herokuapp.com/api/assignments";
+  url = "http://localhost:8010/api/assignments";
+ // url = "https://api-angular-backend-miage.herokuapp.com/api/assignments";
 
   getAssignments(): Observable<Assignment[]> {
    
@@ -97,7 +97,7 @@ export class AssignmentsService {
     //Pour le moment, on a rien à faire ... ça marche tel quel
     //PLus tard envoyer la requete http PUT sur web service pour update d'une base de données
     this.loggingService.log(assignment, "modifié");
-    return this.http.post<Assignment>(this.url, assignment);
+    return this.http.put<Assignment>(this.url, assignment);
     //return of("Assignment modifié");
   }
   deleteAssignment(assignment: Assignment): Observable<any> {
