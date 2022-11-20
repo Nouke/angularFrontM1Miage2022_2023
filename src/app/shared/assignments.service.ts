@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
+import { bdInitialAssignments } from './data';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class AssignmentsService {
     this.loggingService.setLoggingLevel(1);
   }
   url = "http://localhost:8010/api/assignments";
- // url = "https://api-angular-backend-miage.herokuapp.com/api/assignments";
+// url = "https://api-angular-backend-miage.herokuapp.com/api/assignments";
 
   getAssignments(): Observable<Assignment[]> {
    
@@ -109,6 +110,35 @@ export class AssignmentsService {
  //   this.assignments.splice(pos, 1);
    // return of("Assignment supprimé");
   }
+  // version naive 
+  peuplerBD(){
+    bdInitialAssignments.forEach(a => {
+      let nouvelAssignment = new Assignment();
+      nouvelAssignment.id = a.id;
+      nouvelAssignment.nom = a.nom;
+      nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
+      nouvelAssignment.rendu = a.rendu;
+      this.addAssignment(nouvelAssignment)
+      .subscribe(reponse => {
+        console.log(reponse.message);
+      })
+    });
+    console.log("###Tous les assignments sont ajoutés###");
+  }
+  peuplerBDAvecForkJoin(): Observable<any> {
+    const appelsVersAddAssignment: any = [];
 
+    bdInitialAssignments.forEach((a) => {
+      const nouvelAssignment = new Assignment();
 
+      nouvelAssignment.id = a.id;
+      nouvelAssignment.nom = a.nom;
+      nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
+      nouvelAssignment.rendu = a.rendu;
+
+      appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
+    });
+    return forkJoin(appelsVersAddAssignment); // renvoie un seul Observable pour dire que c'est fini
+  }
+  
 }
