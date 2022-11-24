@@ -35,6 +35,15 @@
       <button mat-flat-button color="accent" class="ajouterBtn"> Ajouter Devoir</button>
     </a>
   </nav>
+  <p> Nb total d'assignments: {{totalDocs}}</p>
+  <p> Nb total de totalPages: {{totalPages}}</p>
+  
+  <div class="paginationBtn">
+  <button mat-raised-button color="primary">Première</button>&nbsp;
+  <button mat-raised-button color="primary">Précédente</button>&nbsp;
+  <button mat-raised-button color="primary">Suivante</button>&nbsp;
+  <button mat-raised-button color="primary">Dernière</button>&nbsp;
+  </div>
 
   <mat-list *ngFor=" let assignment of assignments; let i = index">
     <nav>

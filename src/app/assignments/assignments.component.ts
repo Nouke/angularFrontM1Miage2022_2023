@@ -12,6 +12,17 @@ import {Assignment  } from './assignment.model';
 export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les Assignments !"
 
+  //Pour la pagination
+  page: number = 1;
+  limit: number = 4;
+  totalDocs: number = 0;
+  totalPages: number = 0;
+  hasPrevPage: boolean = false;
+  prevPage: number = 0;
+  hasNextPage: boolean = false;
+  nextPage: number = 0;
+
+
   //ajoutActive = false;
   //formVisible = false; //Pour afficher ou non le formulaire
 
@@ -69,19 +80,29 @@ export class AssignmentsComponent implements OnInit {
 
    //TODO
    console.log("On demande les assignments au service")
-    this.assignmentService.getAssignments()
-    .subscribe(assignments => {
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit)
+    .subscribe(data => {
       //quand on rentre ici on sait que les données sont pretes
       console.log("Données reçues")
-     this.assignments=assignments;
+     this.assignments=data.docs;
+      this.page = data.page;
+      this.limit = data.limit;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.hasPrevPage = data.hasPrevPage;
+      this.prevPage = data.prevPage;
+      this.hasNextPage = data.hasNextPage;
+      this.nextPage = data.nextPage;
+      console.log("données reçues");
+
     });
   //  this.getAssignments();
   }
 
-  getAssignments(){
+  /*getAssignments(){
     this.assignmentService.getAssignments()
     .subscribe(assignments => this.assignments = assignments);
-  }
+  }*/
 
   addAssignment(assignment: Assignment): Observable<string>{
     this.assignments.push(assignment);
