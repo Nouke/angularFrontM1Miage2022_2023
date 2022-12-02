@@ -37,7 +37,7 @@
   </nav>
   <p> Nb total d'assignments: {{totalDocs}}</p>
   <p> Nb total de totalPages: {{totalPages}}</p>
-  <p> Nb assignments par page: <input type="range" min=1 max=100 value=10 (onchange)="getAssignments()" [(ngModel)]="limit"> {{limit}}</p> 
+  <p> Nb assignments par page: <input type="range" min=1 max=100 value=10 (change)="getAssignments()" [(ngModel)]="limit"> {{limit}}</p> 
   <div class="paginationBtn">
   <button mat-raised-button color="primary" (click)="premierePage()" [disabled]="page===1">Première</button>&nbsp;
   <button mat-raised-button color="primary" (click)="pagePrecedente()" [disabled]="!hasPrevPage">Précédente</button>&nbsp;
