@@ -12,7 +12,10 @@ export class AddAssignmentComponent implements OnInit {
  // @Output() nouvelAssignment = new EventEmitter<Assignment>();
   nomDevoir!: string;
   dateRendu!: Date;
-ajoutActive: any;
+  nomEleve!: string;
+  note!: number;
+  remarque!: string;
+  ajoutActive: any;
 
   //nomDevoir: string = "";
  // dateRendu!: Date;

@@ -9,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -26,6 +26,12 @@ import { Routes, RouterModule  } from '@angular/router';
 import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from "@angular/common/http";
+import { LoginComponent } from './login/login.component';
+//import { LoginComponent } from './login/login.component';
+//import { SignUpComponent } from './sign-up/sign-up.component';
+//import { LoginComponent } from './login/login.component';
+//import { InscriptionComponent } from './inscription/inscription.component';
+//import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -40,6 +46,10 @@ const routes: Routes = [
   {
     path:"add",
     component:AddAssignmentComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
   },
   {
     path:"list",
@@ -64,6 +74,9 @@ const routes: Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssignmentComponent,
+    LoginComponent,
+    //SignUpComponent,
+  
     //ComponentDetailComponent, 
   ],
   imports: [
@@ -75,7 +88,7 @@ const routes: Routes = [
     MatInputModule, MatFormFieldModule,MatNativeDateModule,
     MatDatepickerModule,MatListModule,MatCheckboxModule,
     MatCardModule, MatToolbarModule, MatSidenavModule,
-    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule
+    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

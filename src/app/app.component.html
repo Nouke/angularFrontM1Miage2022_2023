@@ -136,7 +136,9 @@
 </section>
 
 -->
-<mat-toolbar style="background-color:#008080;">
+<mat-toolbar style="background-color:#122B57;">
+<!--#007fa5;-->
+    <!-- #008080 #051039  051039-->
     
         <mat-toolbar-row>
         
@@ -145,9 +147,13 @@
             <br>
             <button mat-flat-button color="primary" (click)="initialiserLaBaseAvecDonneesDeTest()"> PeuplerBD</button>
             
-            <mat-slide-toggle class="login" color="primary" (click)="login()">login</mat-slide-toggle>
+          <!--   <mat-slide-toggle class="login" color="primary" (click)="login()">login</mat-slide-toggle>  -->
             
-           
+            <ul>
+                <li> <a class="login2" routerLink="login">Login</a><li>
+                <li> <a routerLink="sign-up"> Sign-up</a></li>
+            
+            </ul>
 
           
         </mat-toolbar-row>
@@ -162,6 +168,7 @@
             <mat-list-item><a color="beige" routerLink="/home">Home </a></mat-list-item>
             <mat-list-item><a routerLink="/list">Liste des devoirs </a></mat-list-item>
             <mat-list-item><a routerLink="/add">Ajout d'un devoir </a></mat-list-item>
+            <mat-list-item><a routerLink="/login">Login</a></mat-list-item>
             <mat-list-item><a routerLink="/assignments ">Modification d'un devoir </a></mat-list-item>
             <mat-list-item><a routerLink="/assignments ">Suppression d'un devoir</a></mat-list-item>
             <mat-list-item><a routerLink="/assignments ">Génération de données de test</a></mat-list-item>
