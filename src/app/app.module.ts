@@ -28,10 +28,9 @@ import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 //import { LoginComponent } from './login/login.component';
-//import { SignUpComponent } from './sign-up/sign-up.component';
-//import { LoginComponent } from './login/login.component';
-//import { InscriptionComponent } from './inscription/inscription.component';
-//import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AgGridModule } from 'ag-grid-angular-legacy';
+
 
 const routes: Routes = [
   {
@@ -51,6 +50,11 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
+  {
+  path: "sign-up",
+    component: SignUpComponent
+  },
+
   {
     path:"list",
     component:AssignmentsComponent
@@ -75,7 +79,7 @@ const routes: Routes = [
     AddAssignmentComponent,
     EditAssignmentComponent,
     LoginComponent,
-    //SignUpComponent,
+    SignUpComponent,
   
     //ComponentDetailComponent, 
   ],
@@ -88,7 +92,7 @@ const routes: Routes = [
     MatInputModule, MatFormFieldModule,MatNativeDateModule,
     MatDatepickerModule,MatListModule,MatCheckboxModule,
     MatCardModule, MatToolbarModule, MatSidenavModule,
-    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule
+    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule,AgGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

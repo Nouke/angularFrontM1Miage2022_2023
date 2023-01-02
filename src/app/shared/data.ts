@@ -1,4 +1,4 @@
-export { bdInitialAssignments };
+/* export { bdInitialAssignments };
 
 
 const bdInitialAssignments = [
@@ -1002,4 +1002,4 @@ const bdInitialAssignments = [
     { "id": 997, "nom": "Runolfsson, Kiehn and Lakin", "dateDeRendu": "2022-11-08T21:14:45Z", "rendu": false },
     { "id": 998, "nom": "Stanton-Runolfsson", "dateDeRendu": "2022-04-17T12:19:00Z", "rendu": true },
     { "id": 999, "nom": "Christiansen Group", "dateDeRendu": "2022-11-17T18:07:20Z", "rendu": true },
-    { "id": 1000, "nom": "Treutel-Monahan", "dateDeRendu": "2022-05-27T11:35:04Z", "rendu": true }]
+    { "id": 1000, "nom": "Treutel-Monahan", "dateDeRendu": "2022-05-27T11:35:04Z", "rendu": true }] */

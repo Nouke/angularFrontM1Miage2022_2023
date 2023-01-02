@@ -3,7 +3,7 @@ import { Assignment } from '../assignments/assignment.model';
 import { catchError, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
-import { bdInitialAssignments } from './data';
+//import { bdInitialAssignments } from './data';
 
 @Injectable({
   providedIn: 'root'
@@ -47,14 +47,18 @@ export class AssignmentsService {
     ) {
     this.loggingService.setLoggingLevel(1);
   }
- // url = "http://localhost:8010/api/assignments";
- url = "https://api-angular-backend-miage.herokuapp.com/api/assignments";
+  url = "http://localhost:8010/api/assignments";
+ //url = "https://api-angular-backend-miage.herokuapp.com/api/assignments";
 
   /*getAssignments(): Observable<Assignment[]> {
    
    return this.http.get<Assignment[]>(this.url);
    // return of(this.assignments);
   }*/
+
+  getAssignments() {
+    return this.http.get<any>(this.url)
+  }
 
   getAssignmentsPagine(page: number, limit:number): Observable<any> {
 
@@ -79,6 +83,7 @@ export class AssignmentsService {
     );
 
   }
+ 
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
@@ -117,7 +122,7 @@ export class AssignmentsService {
    // return of("Assignment supprimé");
   }
   // version naive 
-  peuplerBD(){
+  /*peuplerBD(){
     bdInitialAssignments.forEach(a => {
       let nouvelAssignment = new Assignment();
       nouvelAssignment.id = a.id;
@@ -145,6 +150,6 @@ export class AssignmentsService {
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
     });
     return forkJoin(appelsVersAddAssignment); // renvoie un seul Observable pour dire que c'est fini
-  }
+  }*/
   
 }

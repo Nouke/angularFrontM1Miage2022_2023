@@ -138,20 +138,20 @@
 -->
 <mat-toolbar style="background-color:#122B57;">
 <!--#007fa5;-->
-    <!-- #008080 #051039  051039-->
+    <!-- #008080 #051039  051039  #008080-->
     
         <mat-toolbar-row>
         
             <button mat-button (click)="opened=!opened" class="menu"><mat-icon>menu</mat-icon></button>   
             <button mat-button class="home"> <mat-icon> home </mat-icon>Home</button>
             <br>
-            <button mat-flat-button color="primary" (click)="initialiserLaBaseAvecDonneesDeTest()"> PeuplerBD</button>
+         <!--    <button mat-flat-button color="primary" (click)="initialiserLaBaseAvecDonneesDeTest()"> PeuplerBD</button> -->
             
           <!--   <mat-slide-toggle class="login" color="primary" (click)="login()">login</mat-slide-toggle>  -->
             
             <ul>
                 <li> <a class="login2" routerLink="login">Login</a><li>
-                <li> <a routerLink="sign-up"> Sign-up</a></li>
+                <li> <a class="login3" routerLink="sign-up"> Sign-up</a></li>
             
             </ul>
 
@@ -160,28 +160,48 @@
 
 </mat-toolbar> 
 
+<div>
 <mat-sidenav-container>
+   
 
     <mat-sidenav [(opened)]="opened" mode="side">
+   
 
         <mat-list>
             <mat-list-item><a color="beige" routerLink="/home">Home </a></mat-list-item>
             <mat-list-item><a routerLink="/list">Liste des devoirs </a></mat-list-item>
             <mat-list-item><a routerLink="/add">Ajout d'un devoir </a></mat-list-item>
             <mat-list-item><a routerLink="/login">Login</a></mat-list-item>
+            <mat-list-item><a routerLink="/sign-up">Sign-up</a></mat-list-item>
             <mat-list-item><a routerLink="/assignments ">Modification d'un devoir </a></mat-list-item>
             <mat-list-item><a routerLink="/assignments ">Suppression d'un devoir</a></mat-list-item>
             <mat-list-item><a routerLink="/assignments ">Génération de données de test</a></mat-list-item>
         </mat-list>
+
+        
       
        
     </mat-sidenav>
+       
 
     <mat-sidenav-content>
+
+      
        <!-- Permet d'afficher le composant qui correspond à l'URL en fonction des routes-->
         <router-outlet></router-outlet>
      
     </mat-sidenav-content>
+ 
 </mat-sidenav-container>
+<ag-grid-angular 
+    style="width: 900px; height: 350px;" 
+    class="ag-theme-alpine" 
+    [rowData]="rowData"
+    [columnDefs]="columnDefs">
+</ag-grid-angular>
+</div>
+
+
+
 
 <!--<app-assignments> </app-assignments>-->

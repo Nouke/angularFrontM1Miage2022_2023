@@ -44,11 +44,12 @@ section {
     
 }
 mat-sidenav-container{
-    height: calc(205vh - 115vh);
+    height: calc(205vh - 170vh);
 }
  mat-sidenav{
     width: 200px;
-    background-color:#008080;
+    background-color:#004c63; 
+    
 }
 .bt{
     display: table;
@@ -60,6 +61,12 @@ mat-sidenav-container{
 .login2 {
     margin-left: 1000px;
     margin-bottom: 200px;
+    color: beige;
+}
+
+.login3 {
+    margin-left: 900px;
+    margin-bottom: 300px;
     color: beige;
 
 }
