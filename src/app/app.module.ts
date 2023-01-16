@@ -30,6 +30,11 @@ import { LoginComponent } from './login/login.component';
 //import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AgGridModule } from 'ag-grid-angular-legacy';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const routes: Routes = [
@@ -80,6 +85,9 @@ const routes: Routes = [
     EditAssignmentComponent,
     LoginComponent,
     SignUpComponent,
+    HomeComponent,
+    NavbarComponent,
+    
   
     //ComponentDetailComponent, 
   ],
@@ -92,7 +100,9 @@ const routes: Routes = [
     MatInputModule, MatFormFieldModule,MatNativeDateModule,
     MatDatepickerModule,MatListModule,MatCheckboxModule,
     MatCardModule, MatToolbarModule, MatSidenavModule,
-    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule,AgGridModule
+    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule, AgGridModule,
+    MatSortModule, MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

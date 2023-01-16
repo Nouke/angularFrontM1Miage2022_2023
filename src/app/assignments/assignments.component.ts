@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
 
 @Component({
   //selector: 'app-<assignments>',
@@ -9,10 +12,12 @@ import { Assignment } from './assignment.model';
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css']
 })
-export class AssignmentsComponent implements OnInit {
+export class AssignmentsComponent implements OnInit, AfterViewInit {
   titre = "Mon application sur les Assignments !"
 
   //Pour la pagination
+  formVisible = false;
+  assignementSelectionne?: Assignment;
   page: number = 1;
   limit: number = 4;
   totalDocs: number = 0;
@@ -22,6 +27,11 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean = false;
   nextPage: number = 0;
 
+  //Pour le tableau 
+  displayedColumns: string[] = ['demo-id', 'demo-nom', 'demo-prof', 'demo-matiere', 'demo-eleve', 'demo-note', 'demo-dateDeRendu', 'demo-rendu'];
+  ajoutActive = false;
+  assignments?: Assignment[];
+  dataSource = new MatTableDataSource(this.assignments);
 
   //ajoutActive = false;
   //formVisible = false; //Pour afficher ou non le formulaire
@@ -65,9 +75,13 @@ assignments = [
   }
 ]
 */
-  assignments: Assignment[] = [];
-  assignmentsService: any;
-  constructor(private assignmentService: AssignmentsService) { }
+  //**assignments: Assignment[] = [];
+  //**assignmentsService: any;
+
+  constructor(private assignmentService: AssignmentsService,  private _liveAnnouncer: LiveAnnouncer) { }
+  /*ngAfterViewInit(): void {
+    throw new Error('Method not implemented.');
+  }*/
 
   // Appeler pour l'affichage
   ngOnInit(): void {
@@ -82,7 +96,18 @@ assignments = [
     this.getAssignments();
   };
   //  this.getAssignments();
+  assignmentClique(assignment: Assignment) {
+    this.assignementSelectionne = assignment;
 
+  }
+  onAddAssignmentBtnClick() {
+    this.formVisible = !this.formVisible;
+
+  }
+
+  onDeletedAssignment(event: Assignment) {
+
+  }
   getAssignments() {
 
     console.log("On demande les assignments au service")
@@ -100,6 +125,8 @@ assignments = [
         this.hasNextPage = data.hasNextPage;
         this.nextPage = data.nextPage;
         console.log("données reçues");
+        this.dataSource = new MatTableDataSource(this.assignments);
+        this.dataSource.sort = this.sort;
 
       });
   }
@@ -133,10 +160,10 @@ assignments = [
     .subscribe(assignments => this.assignments = assignments);
   }*/
 
-  addAssignment(assignment: Assignment): Observable<string> {
+  /***addAssignment(assignment: Assignment): Observable<string> {
     this.assignments.push(assignment);
     return of('Assignment ajouté');
-  }
+  }*/
 
   /* assignmentClique(assignment: Assignment) {
      this.assignmentSelectionne = assignment;
@@ -159,6 +186,7 @@ assignments = [
    }*/
 
   /*  onNouvelAssignment(assignment: Assignment) {
+
       //this.assignments.push(event);
       this.assignmentsService.addAssignment(assignment)
         .subscribe((message: any) => {
@@ -171,10 +199,18 @@ assignments = [
         })
     }*/
 
-  updateAssignment(assignment: Assignment): Observable<string> {
+  
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+
+    //  this.dataSource.sort = this.sort;
+
+  }
+    /*updateAssignment(assignment: Assignment): Observable<string> {
     //Pour le moment, on a rien à faire ... ça marche tel quel
     //PLus tard envoyer la requete http PUT sur web service pour update d'une base de données
 
     return of("Assignment service: assignment modifié");
-  }
+  }*/
 }

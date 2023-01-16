@@ -1,48 +1,87 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthModel } from './auth-model';
+import { Observable} from 'rxjs';
+import { User } from '../assignments/user.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-
+  admin = false;
   loggedIn = false;
-
-  constructor(private http: HttpClient) { }
-
-  signupUser(username: string, password: string) {
-
-    const authData: AuthModel = { username: username, password: password };
-
-    this.http.post('http://localhost:8010/sign-up/', authData).subscribe(res => {
-      console.log(res);
+  private HttpOptions = {
+    headers: new HttpHeaders({
+      'content-type': 'application/json'
     })
   }
 
+  constructor(private http: HttpClient) { }
+  url = "http://localhost:8010/api/assignments";
+  users = [
+    {
+      id: 1,
+      email: "admin",
+      password: "admin",
+    },
+    {
+      id: 2,
+      email: "noumouke",
+      password: "noumouke"
+    }
+  ]
+  /*
+  getUsers():Observable<User[]>{
+    return of(this.users);
+    //return this.http.get<User[]>(this.url) 
+  }
+  */
 
-  logIn() {
-    // devrait prendre un login et un password en parametre
-    this.loggedIn = true;
+  findUser(email: string, password: string, isAdmin: boolean): Observable<User | undefined> {
+    //console.log("getUser"+this.users.find(a=>a.email === email && a.password === password));
+    // return of(this.users.find(a=>a.email === email && a.password === password))
+    return this.http.post<User>(this.url, { email, password, isAdmin }, this.HttpOptions);
   }
 
+  userExist(email: string, password: string): boolean {
+    if (this.users.find(a => a.email === email && a.password === password) === undefined) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  logIn() {
+    this.loggedIn = true;
+  }
   logOut() {
     this.loggedIn = false;
   }
 
   isAdmin() {
+    this.admin = true;
+  }
+  isNotAdmin() {
+    this.admin = false;
+  }
 
+
+  checkIsAdmin() {
     const isUserAdmin = new Promise((resolve, reject) => {
-      resolve(this.loggedIn);
+      resolve(this.admin && this.loggedIn);
     })
     return isUserAdmin;
-    // return this.loggedIn
   }
-  /*
 
-  */
-
+  checkIsLoggedIn() {
+    const isUserLoggedIn = new Promise((resolve, reject) => {
+      resolve(this.loggedIn);
+    })
+    return isUserLoggedIn;
+  }
 
 
 }

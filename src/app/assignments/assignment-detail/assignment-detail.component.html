@@ -1,16 +1,37 @@
 <h3>Dans le detail</h3>
-<p *ngIf="assignmentTransmis"> {{assignmentTransmis.nom}}</p>
 
+<!--<p *ngIf="assignmentTransmis"> {{assignmentTransmis.nom}}</p>-->
 
-<mat-card *ngIf="assignmentTransmis">
-    <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
-    <mat-card-subtitle> {{assignmentTransmis.dateDeRendu | date}} </mat-card-subtitle>
+<div class="container"> 
 
-    <div id="bottom">
-        <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()"> Devoir rendu </mat-checkbox>
+<mat-card *ngIf="assignementTransmis">
+
+    <mat-card-title>{{assignementTransmis.nom}}</mat-card-title>
+    <mat-card-subtitle> {{assignementTransmis.dateDeRendu | date}} </mat-card-subtitle>
+    <mat-card-subtitle>eleve :{{assignementTransmis.auteur}}</mat-card-subtitle>
+    <mat-card-subtitle>Note :{{assignementTransmis.note}}</mat-card-subtitle>
+    <mat-card-content>Remarque : {{assignementTransmis.remarque}}</mat-card-content>
+
+        <mat-checkbox [disabled]="!isEvaluated()" *ngIf="!assignementTransmis.rendu" (click)="onAssignmentRendu()">
+             Devoir Rendu</mat-checkbox>
+        
+        <br>
+    
+    <div class="buttons">
+    <!--     <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()"> Devoir rendu </mat-checkbox>
 
         <button mat-raised-button color="primary" [disabled]="!isAdmin()" (click)="onClickEdit()"> EDIT</button>
 
-        <button mat-raised-button color="warn" [disabled]="!isAdmin()" (click)="onDeleteAssignment()"> DELETE</button>
+        <button mat-raised-button color="warn" [disabled]="!isAdmin()" (click)="onDeleteAssignment()"> DELETE</button> -->
+            <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isUser()">  Edit </button>&nbsp;
+    
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="onDeleteAssignment()"
+        [disabled]="!isAdmin()">   <mat-icon>delete</mat-icon>  </button>
     </div>
+    
+    <br>
+    <p *ngIf="!isUser()"> il faut se connecter en tant que utilisateur pour modifier un devoir </p>
+    <p *ngIf="!isAdmin()">il faut se connecter en tant que admin pour supprimer et modifier un devoir </p>
+    
 </mat-card>
+</div>

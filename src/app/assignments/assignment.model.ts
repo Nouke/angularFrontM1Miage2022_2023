@@ -3,5 +3,12 @@ export class Assignment {
    id!: number;
    nom!: string;
    dateDeRendu!: Date;
-   rendu: boolean = true; 
+   rendu!: boolean;
+   
+   auteur !: string;
+   note !: number;
+   remarque !: string;
+   matiere !: string;
+   urlSubjectImage !: string;
+   urlTeacherImage !: string;
 }

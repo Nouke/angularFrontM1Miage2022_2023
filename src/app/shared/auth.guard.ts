@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     // return false;
 
     // Ici, on utilise le service qui renvoie une promesse qui dit si on est admin ou pas
-    return this.authService.isAdmin()
+    /*return this.authService.isAdmin()
      .then((authentifie): boolean => {
       if (authentifie) {
         console.log("j'autorise la navigation");
@@ -26,7 +26,17 @@ export class AuthGuard implements CanActivate {
         this.router.navigate(["/home"]);
         return false;
       }
-    })
+    })*/
+
+    return (this.authService.checkIsLoggedIn() || this.authService.checkIsAdmin())
+      .then(authentifie => {
+        if (authentifie) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      })
   }
 
 }

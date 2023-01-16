@@ -12,17 +12,17 @@ import { ColDef } from "ag-grid-community";
 })
 export class AppComponent implements OnInit{
   title = 'assignment-app';
-  opened=false;
+  //opened=false;
 
-
+/*
   columnDefs: ColDef[] = [
     { field: 'id' },
     { field: 'nom' },
     { field: 'dateDeRendu' },
     { field: 'rendu'}
   ];
-
- rowData = [];
+*/
+ //rowData = [];
  /*   { Id: 'Toyota', Devoir: 'Celica', Date: 35000, Rendu:'Oui' },
     { Id: 'Ford', Devoir: 'Mondeo', Date: 32000,  Rendu: 'Oui' },
     { Id: 'Porsche', Devoir: 'Boxster', Date: 72000, Rendu: 'Oui'}
@@ -30,32 +30,29 @@ export class AppComponent implements OnInit{
 
   constructor(private authService: AuthService, 
     private router:Router, private assignmentService: AssignmentsService){}
+
+ 
   ngOnInit(): void {
-    this.assignmentService.getAssignments().subscribe((data) => {
-      console.log(data.docs);
-      this.rowData = data.docs
-    })
+    this.router.navigate(['/assignments'])
   }
-  
-  login(){
-    if(!this.authService.loggedIn){
+
+  isAdmin() {
+    //console.log("i'm here"+this.authService.loggedIn);
+    if (!this.authService.loggedIn) {
       this.authService.logIn();
-    }
-
-    else{
+    } else {
       this.authService.logOut();
-      this.router.navigate(["/home"]);
+      this.router.navigate(['/assignments'])
     }
-  
   }
-
- /* initialiserLaBaseAvecDonneesDeTest() {
+  login() {
+    this.router.navigate(['/assignments'])
+  }
+  initialiserLaBase() {
     this.assignmentService.peuplerBDAvecForkJoin()
-    .subscribe(() => {
-
-      console.log("Données ajoutées");
-      this.router.navigate(["/home"]);
-    })
-   
-  }*/
+      .subscribe(() => {
+        this.router.navigate(["/assignments"])
+      });
+    console.log("BD inisialisé");
+  }
 }
