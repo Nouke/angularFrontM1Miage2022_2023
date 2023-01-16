@@ -1,3 +1,43 @@
+# Projet Angular
+Le but de ce projet était de découvrir le framework Angular et de maitriser les concepts fondamentaux.
+
+# Fonctionnalités
+
+Ajout d'un nouvel assignment;
+Connexion en tant qu'admin;
+Connexion en tant que simple utilisateur;
+Modifification, suppression et ajout d'un assignment si et seulement si on est admin;
+Liste des assignments dans un tableau;
+Acceder au détail d'un assignment;
+Fonction de pagination;
+Fonction bouton grisé si pas admin
+Ajout d'un auteur, matière(nom matière, image professeur, image de la matière, note de la matière), pour chacun des assignments 
+Fonction devoir rendu ou non.
+
+# Comment lancer ce projet?
+
+Pour démarrer ce projet, vous aurez besoin de:
+
+Node.js, version v16.17.0
+Angular CLI,version 14.2.3
+npm, version 8.19.3
+
+Ensuite, clonez le dépôt sur votre ordinateur avec la commande: git clone "url"
+Ouvrez un terminal et naviguez jusqu'à la racine du projet
+Tapez la commande npm install pour pouvoir installer les dépendances nécessaires au démarrage du projet
+Tapez la commande ng serve pour démarrer l'application (coté front end)
+Ensuite, tapez la commande node server.js, pour demarrrer le backend
+Ouvrez votre navigateur et accédez à l'URL http://localhost:4200 pour accéder à l'application
+
+# Ressources
+Angular documentation
+Node.js
+[Angular material] (https://material.angular.io/)
+
+
+
+
+
 # AssignmentApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
