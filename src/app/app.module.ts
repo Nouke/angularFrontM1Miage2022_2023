@@ -100,7 +100,7 @@ const routes: Routes = [
     MatInputModule, MatFormFieldModule,MatNativeDateModule,
     MatDatepickerModule,MatListModule,MatCheckboxModule,
     MatCardModule, MatToolbarModule, MatSidenavModule,
-    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule, AgGridModule,
+    RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule,
     MatSortModule, MatSelectModule,
     MatTableModule
   ],
