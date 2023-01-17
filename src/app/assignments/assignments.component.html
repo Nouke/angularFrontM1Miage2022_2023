@@ -98,7 +98,7 @@
 
     <!-- prof Column -->
     <ng-container matColumnDef="demo-prof">
-      <th mat-header-cell *matHeaderCellDef> prof </th>
+      <th mat-header-cell *matHeaderCellDef> Professeur </th>
       <td mat-cell *matCellDef="let element">
         <img [src]="element.urlTeacherImage">
       </td>
@@ -106,7 +106,7 @@
 
     <!-- matiere Column -->
     <ng-container matColumnDef="demo-matiere">
-      <th mat-header-cell *matHeaderCellDef> matiere </th>
+      <th mat-header-cell *matHeaderCellDef> Cours </th>
       <td mat-cell *matCellDef="let element">
         <img [src]="element.urlSubjectImage">
       </td>
@@ -114,14 +114,14 @@
 
     <!-- eleve Column -->
     <ng-container matColumnDef="demo-eleve">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> eleve </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Elève </th>
       <td mat-cell *matCellDef="let element"> {{element.auteur}} </td>
     </ng-container>
 
 
     <!-- note Column -->
     <ng-container matColumnDef="demo-note">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> note </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Note </th>
       <td mat-cell *matCellDef="let element"> {{element.note}} </td>
     </ng-container>
 
@@ -129,13 +129,13 @@
 
     <!-- date Column -->
     <ng-container matColumnDef="demo-dateDeRendu">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date"> date de rendu </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date"> Date de rendu </th>
       <td mat-cell *matCellDef="let element"> {{element.dateDeRendu|date}} </td>
     </ng-container>
 
     <!-- rendu Column -->
     <ng-container matColumnDef="demo-rendu">
-      <th mat-header-cell *matHeaderCellDef> rendu </th>
+      <th mat-header-cell *matHeaderCellDef> Rendu </th>
       <td mat-cell *matCellDef="let element"> {{element.rendu}} </td>
 
     </ng-container>
