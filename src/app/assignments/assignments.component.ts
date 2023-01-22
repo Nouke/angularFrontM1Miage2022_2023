@@ -13,7 +13,7 @@ import { MatSort, Sort } from '@angular/material/sort';
   styleUrls: ['./assignments.component.css']
 })
 export class AssignmentsComponent implements OnInit, AfterViewInit {
-[x: string]: any;
+  [x: string]: any;
   titre = "Mon application sur les Assignments !"
 
   //Pour la pagination
@@ -39,7 +39,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource(this.assignmentList);
 
 
-  constructor(private assignmentService: AssignmentsService,  private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private assignmentService: AssignmentsService, private _liveAnnouncer: LiveAnnouncer) { }
   /*ngAfterViewInit(): void {
     throw new Error('Method not implemented.');
   }*/
@@ -51,7 +51,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
     console.log("Avant AFFICHAGE");
     //On va demander au service de nous envoyer les données (les assignments)
     //typiquement: le service envoie une requete AJAX sur un web service du cloud
-    // this.assignments=this.assignmentsService.getAssignments();
+    //this.assignments=this.assignmentsService.getAssignments();
 
     //TODO
     this.getAssignments();
@@ -124,44 +124,53 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
     //matiere
     //nom
     //remarque
-    for(var i = 0; i < this.assignments.length; i++){
 
-      var auteur = this.assignments[i].auteur.toLocaleLowerCase();
-      var matiere = this.assignments[i].matiere.toLocaleLowerCase();
-      var nom = this.assignments[i].nom.toLocaleLowerCase();
-      var remarque = this.assignments[i].remarque.toLocaleLowerCase();
+    this.assignmentService.getAssignments()
+      .subscribe(data => {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].auteur && data[i].matiere && data[i].nom && data[i].remarque){
 
-      if (auteur.toLocaleLowerCase().includes(this.searchText) || 
-        matiere.toLocaleLowerCase().includes(this.searchText) ||
-        nom.toLocaleLowerCase().includes(this.searchText) ||
-        remarque.toLocaleLowerCase().includes(this.searchText)){
-          this.assignmentList.push(this.assignments[i])
+            
+            var auteur = data[i].auteur.toLowerCase();
+            var matiere = data[i].matiere.toLowerCase();
+            var nom = data[i].nom.toLowerCase();
+            var remarque = data[i].remarque.toLowerCase();
+            if (auteur.includes(this.searchText.toLowerCase()) ||
+              matiere.includes(this.searchText.toLowerCase()) ||
+              nom.includes(this.searchText.toLowerCase()) ||
+              remarque.includes(this.searchText.toLowerCase())) {
+                this.assignmentList.push(data[i])
+            }
+          }
         }
-    }
+        this.dataSource = new MatTableDataSource(this.assignmentList);
 
-    this.dataSource = new MatTableDataSource(this.assignmentList);
+      });
+
+
   }
-  onFocus(){
+  onFocus() {
     this.focused = true;
   }
-  onFocusOut(){
+  onFocusOut() {
     this.dataSource = new MatTableDataSource(this.assignments);
     this.searchText = '';
     this.focused = false;
   }
 
 
-  trier(event: any){
+
+  trier(event: any) {
     this.assignmentList = [];
-    if (event.value != 'aucun' ){
+    if (event.value != 'aucun') {
       for (var i = 0; i < this.assignments.length; i++) {
-        if (this.assignments[i].rendu && event.value == 'rendu'){
+        if (this.assignments[i].rendu && event.value == 'rendu') {
           this.assignmentList.push(this.assignments[i])
         }
         if (!this.assignments[i].rendu && event.value == 'non rendu')
           this.assignmentList.push(this.assignments[i])
       }
-    }else{
+    } else {
       this.assignmentList = this.assignments
     }
     this.dataSource = new MatTableDataSource(this.assignmentList);
@@ -181,7 +190,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
         })
     }*/
 
-  
+
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
@@ -189,10 +198,10 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
     //  this.dataSource.sort = this.sort;
 
   }
-    /*updateAssignment(assignment: Assignment): Observable<string> {
-    //Pour le moment, on a rien à faire ... ça marche tel quel
-    //PLus tard envoyer la requete http PUT sur web service pour update d'une base de données
+  /*updateAssignment(assignment: Assignment): Observable<string> {
+  //Pour le moment, on a rien à faire ... ça marche tel quel
+  //PLus tard envoyer la requete http PUT sur web service pour update d'une base de données
 
-    return of("Assignment service: assignment modifié");
-  }*/
+  return of("Assignment service: assignment modifié");
+}*/
 }

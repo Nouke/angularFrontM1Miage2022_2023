@@ -62,7 +62,7 @@
 </mat-form-field>
 
   <p class="search-test">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" (focus)="focused=true" (change)="search()" autocomplete="on"
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" (focus)="focused=true" (change)="search()"
       placeholder="votre recherche ici">
               <button *ngIf="focused" (click)="onFocusOut()">X</button>
               <button *ngIf="!focused"> O </button>

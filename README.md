@@ -1,18 +1,37 @@
 # Projet Angular
 Le but de ce projet était de découvrir le framework Angular et de maitriser les concepts fondamentaux.
+    Compte admin:
+        username:     admin
+        mot de passe: admin
+    
+    Compte simple utilisateur
+         username:     noumouke
+         mot de passe: noumouke
 
+Le lien de la video: https://youtu.be/kH4LiJ7tN9A
+
+Le lien de l'application hébergée sur vercel: https://angular-front-m1-miage2022-2023-y2s6.vercel.app/assignments
+                                              https://angular-back-end-m1-miage2022-2023.vercel.app/api/assignments
+
+Le lien git : https://github.com/Nouke/angularFrontM1Miage2022_2023
+              https://github.com/Nouke/angularBackEndM1Miage2022_2023
 # Fonctionnalités
 
-Ajout d'un nouvel assignment;
-Connexion en tant qu'admin;
-Connexion en tant que simple utilisateur;
-Modifification, suppression et ajout d'un assignment si et seulement si on est admin;
-Liste des assignments dans un tableau;
-Acceder au détail d'un assignment;
-Fonction de pagination;
-Fonction bouton grisé si pas admin
-Ajout d'un auteur, matière(nom matière, image professeur, image de la matière, note de la matière), pour chacun des assignments 
+Ajout d'un nouvel assignment.
+Connexion en tant qu'admin.
+Connexion en tant que simple utilisateur.
+Modifification et ajout d'un assignment si on est simple utilisateur.
+Modifification et suppression d'un assignment si on est simple utilisateur.
+Liste des assignments dans un tableau.
+Acceder au détail d'un assignment.
+Fonction de pagination.
+La recherche sur les assignments soit par nom, matière, remarque, ...
+Le tri par rendu, ou non rendu sur les assignments.
+Fonction bouton grisé si pas admin.
+Ajout d'un auteur, matière(nom matière, image professeur, image de la matière, note de la matière), pour chacun des assignments. 
 Fonction devoir rendu ou non.
+On ne peut pas rendre, un assignment qui n'a pas été noté.
+
 
 # Comment lancer ce projet?
 

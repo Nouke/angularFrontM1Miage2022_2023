@@ -86,9 +86,9 @@ export class AssignmentsService {
     ) {
    // this.loggingService.setLoggingLevel(1);
   }
-  url = "http://localhost:8010/api/assignments";
+  //url = "http://localhost:8010/api/assignments";
  //url = "https://api-angular-backend-miage.herokuapp.com/api/assignments";
-  //url ="https://angular-back-end-m1-miage2022-2023.vercel.app/api/assignments";
+  url ="https://angular-back-end-m1-miage2022-2023.vercel.app/api/assignments";
 
   /*getAssignments(): Observable<Assignment[]> {
    
@@ -97,7 +97,7 @@ export class AssignmentsService {
   }*/
 
   getAssignments(): Observable<Assignment[]> {
-    return this.http.get<Assignment[]>(this.url)
+    return this.http.get<Assignment[]>('http://localhost:8010/api/assignmentsAll');
   }
 
   getAssignmentsPagine(page: number, limit:number): Observable<any> {

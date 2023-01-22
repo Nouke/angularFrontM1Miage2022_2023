@@ -127,18 +127,23 @@ form.example input[type=text] {
 
 .search-test button {
     float: left;
-    width: 50px;
-    padding: 10px;
+    width: 40px;
+    padding: 5px;
     background: #2196F3;
     color: white;
     font-size: 17px;
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
+    right: 150px;
 }
 
 .search-test button:hover {
     background: #0b7dda;
+    display: flex;
+    justify-content: center;
+    
+    
 }
 
 form.example::after {
