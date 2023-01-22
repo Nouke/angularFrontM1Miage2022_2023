@@ -27,7 +27,7 @@ Connexion en tant que simple utilisateur.
 
 Modifification et ajout d'un assignment si on est simple utilisateur.
 
-Modifification et suppression d'un assignment si on est simple utilisateur.
+Modifification et suppression d'un assignment si on est admin.
 
 Liste des assignments dans un tableau.
 
