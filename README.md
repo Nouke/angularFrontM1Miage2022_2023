@@ -24,16 +24,25 @@ Ajout d'un nouvel assignment.
 Connexion en tant qu'admin.
 
 Connexion en tant que simple utilisateur.
+
 Modifification et ajout d'un assignment si on est simple utilisateur.
+
 Modifification et suppression d'un assignment si on est simple utilisateur.
+
 Liste des assignments dans un tableau.
+
 Acceder au détail d'un assignment.
+
 Fonction de pagination.
+
 La recherche sur les assignments soit par nom, matière, remarque, ...
+
 Le tri par rendu, ou non rendu sur les assignments.
+
 Fonction bouton grisé si pas admin.
-Ajout d'un auteur, matière(nom matière, image professeur, image de la matière, note de la matière), pour chacun des assignments. 
-Fonction devoir rendu ou non.
+
+Ajout d'un auteur, matière(nom matière, image professeur, image de la matière, note de la matière), pour chacun des assignments.
+
 On ne peut pas rendre, un assignment qui n'a pas été noté.
 
 
