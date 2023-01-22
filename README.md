@@ -1,5 +1,7 @@
 # Projet Angular
 Le but de ce projet était de découvrir le framework Angular et de maitriser les concepts fondamentaux.
+
+
     Compte admin:
         username:     admin
         mot de passe: admin
@@ -18,7 +20,9 @@ Le lien git : https://github.com/Nouke/angularFrontM1Miage2022_2023
 # Fonctionnalités
 
 Ajout d'un nouvel assignment.
+
 Connexion en tant qu'admin.
+
 Connexion en tant que simple utilisateur.
 Modifification et ajout d'un assignment si on est simple utilisateur.
 Modifification et suppression d'un assignment si on est simple utilisateur.
