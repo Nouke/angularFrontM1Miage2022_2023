@@ -1,34 +1,4 @@
-<!--<form ngForm (submit)="onSubmit($event)">
-  <button mat-stroked-button color="primary" 
-  [disabled]="!ajoutActive">
-    Ajouter un devoir
-  </button>
 
-</form>-->
-
-<!--<form ngForm (submit)="onSubmit()" #assignmentForm>
-    <mat-form-field>
-      <input matInput [(ngModel)]="nomDevoir" name="nom" placeholder=" nom du devoir">
-    </mat-form-field>
-    <p>{{nomDevoir}}</p>
- 
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker"  placeholder=" Date de rendu" [(ngModel)]="dateRendu" name="date">
-  </mat-form-field>
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-
-<br>
-
-    <button mat-stroked-button color="primary" [disabled]="!ajoutActive" (Click)="onSubmit();"
-      #assignmentForm> Ajouter un devoir
-    </button>
-
-
-</form>
--->
-
-<!--*ngIf="!formVisible" // Ce bout de code était ds le main-->
 <br>
 
 <main class="container">
@@ -82,7 +52,25 @@
 
 </app-assignment-detail>-->
 
-<div class="table">
+<mat-form-field>
+  <mat-label>Trier</mat-label>
+  <mat-select (selectionChange)="trier($event)">
+    <mat-option *ngFor="let opt of sortOpt" [value]="opt">
+                    {{opt}}
+                </mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <p class="search-test">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" (focus)="focused=true" (change)="search()" autocomplete="on"
+      placeholder="votre recherche ici">
+              <button *ngIf="focused" (click)="onFocusOut()">X</button>
+              <button *ngIf="!focused"> O </button>
+              <!-- <i class="fa fa-search"></i> -->
+            
+  </p>
+  
+<div class="table" >
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
     <!-- Position Column -->
     <ng-container matColumnDef="demo-id">
@@ -136,7 +124,7 @@
     <!-- rendu Column -->
     <ng-container matColumnDef="demo-rendu">
       <th mat-header-cell *matHeaderCellDef> Rendu </th>
-      <td mat-cell *matCellDef="let element"> {{element.rendu}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.rendu?'oui':'non'}} </td>
 
     </ng-container>
 

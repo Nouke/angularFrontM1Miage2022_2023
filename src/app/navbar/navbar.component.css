@@ -36,3 +36,7 @@ mat-sidenav-content {
 span {
     cursor: pointer;
 }
+.search-test{
+   border-top: 200%;
+   left: 150px;
+}

@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AssignmentsService } from '../shared/assignments.service';
 import { AuthService } from '../shared/auth.service';
 
+export interface Devoir {
+  value: string;
+  viewValue: string;
+}
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +16,13 @@ import { AuthService } from '../shared/auth.service';
 })
 export class NavbarComponent implements OnInit {
   router: any;
+  searchText:any;
 
+  foods: Devoir[] = [
+    { value: '0', viewValue: 'Devoir Rendu' },
+    { value: '1', viewValue: 'Devoir non rendu' },
+   
+  ];
 
   constructor(private authService: AuthService, private assignmentService: AssignmentsService) { }
 
@@ -41,5 +53,7 @@ export class NavbarComponent implements OnInit {
       });
     console.log("BD inisialisé");
   }
+
+  
 
 }

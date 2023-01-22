@@ -35,6 +35,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+//import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 const routes: Routes = [
@@ -88,6 +90,8 @@ const routes: Routes = [
     HomeComponent,
     NavbarComponent,
     
+    
+    
   
     //ComponentDetailComponent, 
   ],
@@ -101,8 +105,7 @@ const routes: Routes = [
     MatDatepickerModule,MatListModule,MatCheckboxModule,
     MatCardModule, MatToolbarModule, MatSidenavModule,
     RouterModule.forRoot(routes), MatSlideToggleModule, HttpClientModule, ReactiveFormsModule,
-    MatSortModule, MatSelectModule,
-    MatTableModule
+    MatSortModule, MatSelectModule, MatTableModule, Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

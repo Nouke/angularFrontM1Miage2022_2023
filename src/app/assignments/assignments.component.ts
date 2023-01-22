@@ -13,6 +13,7 @@ import { MatSort, Sort } from '@angular/material/sort';
   styleUrls: ['./assignments.component.css']
 })
 export class AssignmentsComponent implements OnInit, AfterViewInit {
+[x: string]: any;
   titre = "Mon application sur les Assignments !"
 
   //Pour la pagination
@@ -26,57 +27,17 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   prevPage: number = 0;
   hasNextPage: boolean = false;
   nextPage: number = 0;
+  searchText: string = '';
+  focused: boolean = false;
+  sortOpt: string[] = ['aucun', 'rendu', 'non rendu']
 
   //Pour le tableau 
   displayedColumns: string[] = ['demo-id', 'demo-nom', 'demo-prof', 'demo-matiere', 'demo-eleve', 'demo-note', 'demo-dateDeRendu', 'demo-rendu'];
   ajoutActive = false;
   assignments?: Assignment[];
-  dataSource = new MatTableDataSource(this.assignments);
+  assignmentList?: Assignment[];
+  dataSource = new MatTableDataSource(this.assignmentList);
 
-  //ajoutActive = false;
-  //formVisible = false; //Pour afficher ou non le formulaire
-
-  //assignmentSelectionne?: Assignment; // Pour envoie au composant de detail
-
-  /*ngOnInit():void {
-    setTimeout(() => {
-      this.ajoutActive = true;
-    },2000);
-  }*/
-  /* onSubmit(){
-   // console.log(this.nomDevoir + "Date de rendu =");
-    const newAssignment = new Assignment();
-    newAssignment.nom = this.nomDevoir;
-    newAssignment.dateDeRendu = this.dateRendu;
-    newAssignment.rendu= false;
-    console.log(newAssignment);
-   }*/
-  /*
-assignments = [
-  {
-    nom: " TP1 Analyse de données à rendre",
-    dateDeRendu: new Date('2022-10-10'),
-    rendu: true
-
-  },
-
-  {
-    nom: "TP2 Angular à rendre",
-    dateDeRendu: new Date('2022-10-15'),
-    rendu: false
-
-  },
-
-  {
-    nom: "TP3 Mini Projet Angular à rendre",
-    dateDeRendu: new Date ('2022-10-18'),
-    rendu: false
-
-  }
-]
-*/
-  //**assignments: Assignment[] = [];
-  //**assignmentsService: any;
 
   constructor(private assignmentService: AssignmentsService,  private _liveAnnouncer: LiveAnnouncer) { }
   /*ngAfterViewInit(): void {
@@ -94,6 +55,7 @@ assignments = [
 
     //TODO
     this.getAssignments();
+
   };
   //  this.getAssignments();
   assignmentClique(assignment: Assignment) {
@@ -124,8 +86,8 @@ assignments = [
         this.prevPage = data.prevPage;
         this.hasNextPage = data.hasNextPage;
         this.nextPage = data.nextPage;
-        console.log("données reçues");
-        this.dataSource = new MatTableDataSource(this.assignments);
+        this.assignmentList = this.assignments;
+        this.dataSource = new MatTableDataSource(this.assignmentList);
         this.dataSource.sort = this.sort;
 
       });
@@ -155,35 +117,55 @@ assignments = [
     this.page = 1;
     this.getAssignments();
   }
-  /*getAssignments(){
-    this.assignmentService.getAssignments()
-    .subscribe(assignments => this.assignments = assignments);
-  }*/
 
-  /***addAssignment(assignment: Assignment): Observable<string> {
-    this.assignments.push(assignment);
-    return of('Assignment ajouté');
-  }*/
+  search() {
+    this.assignmentList = [];
+    //auteur
+    //matiere
+    //nom
+    //remarque
+    for(var i = 0; i < this.assignments.length; i++){
 
-  /* assignmentClique(assignment: Assignment) {
-     this.assignmentSelectionne = assignment;
-   }*/
+      var auteur = this.assignments[i].auteur.toLocaleLowerCase();
+      var matiere = this.assignments[i].matiere.toLocaleLowerCase();
+      var nom = this.assignments[i].nom.toLocaleLowerCase();
+      var remarque = this.assignments[i].remarque.toLocaleLowerCase();
 
-  /*onAddAssignmentBtnClick() {
-    this.formVisible = true;
-    //Pour cacher la vue des détails
-    this.assignmentSelectionne = undefined;
-  }*/
+      if (auteur.toLocaleLowerCase().includes(this.searchText) || 
+        matiere.toLocaleLowerCase().includes(this.searchText) ||
+        nom.toLocaleLowerCase().includes(this.searchText) ||
+        remarque.toLocaleLowerCase().includes(this.searchText)){
+          this.assignmentList.push(this.assignments[i])
+        }
+    }
+
+    this.dataSource = new MatTableDataSource(this.assignmentList);
+  }
+  onFocus(){
+    this.focused = true;
+  }
+  onFocusOut(){
+    this.dataSource = new MatTableDataSource(this.assignments);
+    this.searchText = '';
+    this.focused = false;
+  }
 
 
-  /* onDeleteAssignment(assignment:Assignment){
-     this.assignmentService.deleteAssignment(assignment)
-     .subscribe(message => {
-       console.log(message);
-       //Pour cacher la vue des détails
-     //  this.assignmentSelectionne = undefined;
-     })  
-   }*/
+  trier(event: any){
+    this.assignmentList = [];
+    if (event.value != 'aucun' ){
+      for (var i = 0; i < this.assignments.length; i++) {
+        if (this.assignments[i].rendu && event.value == 'rendu'){
+          this.assignmentList.push(this.assignments[i])
+        }
+        if (!this.assignments[i].rendu && event.value == 'non rendu')
+          this.assignmentList.push(this.assignments[i])
+      }
+    }else{
+      this.assignmentList = this.assignments
+    }
+    this.dataSource = new MatTableDataSource(this.assignmentList);
+  }
 
   /*  onNouvelAssignment(assignment: Assignment) {
 
